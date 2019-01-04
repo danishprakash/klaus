@@ -1,6 +1,7 @@
 import os
 import io
 import stat
+import pprint
 import subprocess
 
 from dulwich.objects import S_ISGITLINK
@@ -171,23 +172,33 @@ class FancyRepo(dulwich.repo.Repo):
 
     def listdir(self, commit, path):
         """Return a list of directories and files in given directory."""
+        print("path is this")
+        print(path, len(path))
         submodules, dirs, files = [], [], []
+        subs = dict()
         for entry in self.get_blob_or_tree(commit, path).items():
             name, entry = entry.path, entry.in_path(encode_for_git(path))
             if S_ISGITLINK(entry.mode):
                 submodules.append(
                     (name.lower(), name, entry.path, entry.sha))
             elif stat.S_ISDIR(entry.mode):
-                dirs.append((name.lower(), name, entry.path))
+                print(entry)
+                print(entry.path)
+                subs = self.listdir(commit, entry.path.decode("utf-8"))
+                dirs.append((name.lower(), name, entry.path, subs))
             else:
                 files.append((name.lower(), name, entry.path))
+
         files.sort()
         dirs.sort()
+
+        print("inside listdir with path {}".format(path))
+        pprint.pprint(dirs)
 
         if path:
             dirs.insert(0, (None, '..', parent_directory(path)))
 
-        return {'submodules': submodules, 'dirs' : dirs, 'files' : files}
+        return {'submodules': submodules, 'dirs': dirs, 'files': files}
 
     def commit_diff(self, commit):
         """Return the list of changes introduced by `commit`."""
