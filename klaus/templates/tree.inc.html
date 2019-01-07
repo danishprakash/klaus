@@ -10,15 +10,17 @@
         </span>
 
         <ul>
-        {% for item in subs.dirs %}
-            {% if item|length > 3 %}
-                {{ show_dir(item[1], item[2], item[3]) }}
-            {% endif %}
-        {% endfor %}
+            {% for item in subs.dirs %}
+                {% if item|length > 3 %}
+                    {{ show_dir(item[1], item[2], item[3]) }}
+                {% endif %}
+            {% endfor %}
 
-        {% for _, name, fullpath in subs.files %}
-            {{ show_file(name, fullpath) }}
-        {% endfor %}
+            <li class=file>
+                {% for _, name, fullpath in subs.files %}
+                    {{ show_file(name, fullpath) }}
+                {% endfor %}
+            </li>
         </ul>
     </li>
 {% endmacro %}
@@ -34,6 +36,11 @@
                 {{ show_dir(item[1], item[2], item[3]) }}
             {% endif %}
         {% endfor %}
+        <li class=file>
+        {% for _, name, fullpath in root_tree.files %}
+            {{ show_file(name, fullpath) }}
+        {% endfor %}
+        </li>
     </li>
 
     <script type=text/javascript src="{{

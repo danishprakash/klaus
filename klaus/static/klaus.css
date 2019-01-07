@@ -23,7 +23,7 @@ h2 > code:last-of-type {
 
 .history ul, .repolist, .tree ul, .branch-selector ul {
   list-style-type: none;
-  padding-left: 0;
+  /* padding-left: 0; */
 }
 
 /* Header */
@@ -152,33 +152,22 @@ footer a:hover { text-decoration: none; }
 .history .pagination { margin-top: -2em; }
 a.commit { color: black !important; }
 
-.tree ul { font-family: monospace; border-top: 1px solid #e0e0e0; }
-.tree li { background-color: #f9f9f9; border: 1px solid #e0e0e0; border-top: 0; }
+.tree { font-family: monospace; border-top: 1px solid #e0e0e0; }
+.tree li { border: 1px solid #e0e0e0; border-top: 0; }
 .tree li a {
-  padding: 5px 7px 6px 7px;
+  padding: 2px;
+  padding-bottom: 2px;
   display: inline-table;
   color: #001533;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+
 .tree li a:before {
   margin-right: 5px;
   position: relative;
   top: 2px;
-  opacity: 0.7;
-}
-.tree li a.file:before {
-  margin-right: 5px;
-  position: relative;
-  top: 2px;
-  opacity: 0.7;
-  content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAPCAYAAADUFP50AAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9sGBhMmAbS/QqsAAAAdaVRYdENvbW1lbnQAAAAAAENyZWF0ZWQgd2l0aCBHSU1QZC5lBwAAANBJREFUKM+Vkj2OgzAQhb8HSLupkKiQD8DPWbZMkSMgLsF9IlLmMpiKA9CncraIQGbXIPGqsec9faOx1TTNwxhz5YT6vr8lxphr13Wc1D1Zqnmecc4BIGl1LLUk4jgmTVMA1qBzDmvtxuhLEnVdr+fEb5ZleUj0lfgGn/hXh8SiKAKEF+/3F1EUhYkA4zhumlVVARfgBXzvjxoiSkK6/Bt9Q7TWHi7lM8HOVsNE7RMlMQxDkLRs078LEkPh3XfMsuzUZ1Xbts88z3/OhKZpuv8CNeMsq6Yg8OoAAAAASUVORK5CYII=);
-}
-.tree li a.dir:before {
-    display: block;
-    float: left;
-    content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAPCAYAAADtc08vAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9sGBhMiMxgE1i8AAAAdaVRYdENvbW1lbnQAAAAAAENyZWF0ZWQgd2l0aCBHSU1QZC5lBwAAAYxJREFUKM+l0r1KXEEYxvH/bNS4K2RNCjsRBAlqITESI0QCuqBdWLwACSJaiZILiDcQkDRql8oUIqkkkRTRwiKVyvoRV5HFEFEX/DjomePsmfNauB4xrLAmD1PNML95eBnV0Fj/vjPRMcpfMcYAMP9jYXDzV3qSO1LSmegYfdvbV/DQ8zS+709oVzu7u78/FwQAHOeU9Y31gsjz5hYcx5lqbXsxdb23ld4eW15aGQmBaDRGZfzxXS1JvukBQCmFUoqZL9PDIWCMQWuX76tnpLIxisqjJC39SXmoM5thg1Q2xsd3XXjGFmWUlz1g6MPc0xIArV0A9o89dg7PiwJqqyoAiHieRzRaZPUCibiuGzb4J+B6Bv8F3LeBtQFeznLrH5RGAgQQEZRSiAgiEIhgrZCzAcYXLnxLzgrxirIbQGuXmvgFR2eGP0caRBEg5BciIAgieRjwrdwAB9lDnrW9Yjlzkr909boIBAiCApGwVWvdE+a+fkOvzX5STd0D86XV7a/vOzy7t/hzaXb85SVDycBfkNNgmgAAAABJRU5ErkJggg==);
 }
 .icon {
   display:inline-block;
@@ -192,12 +181,30 @@ a.commit { color: black !important; }
 .tree .hasChildren > .expanded {
   background:#999;
 }
+.tree li a:before {
+  margin-right: 5px;
+  position: relative;
+  top: 2px;
+  opacity: 0.7;
+  content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAPCAYAAADUFP50AAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9sGBhMmAbS/QqsAAAAdaVRYdENvbW1lbnQAAAAAAENyZWF0ZWQgd2l0aCBHSU1QZC5lBwAAANBJREFUKM+Vkj2OgzAQhb8HSLupkKiQD8DPWbZMkSMgLsF9IlLmMpiKA9CncraIQGbXIPGqsec9faOx1TTNwxhz5YT6vr8lxphr13Wc1D1Zqnmecc4BIGl1LLUk4jgmTVMA1qBzDmvtxuhLEnVdr+fEb5ZleUj0lfgGn/hXh8SiKAKEF+/3F1EUhYkA4zhumlVVARfgBXzvjxoiSkK6/Bt9Q7TWHi7lM8HOVsNE7RMlMQxDkLRs078LEkPh3XfMsuzUZ1Xbts88z3/OhKZpuv8CNeMsq6Yg8OoAAAAASUVORK5CYII=);
+}
+.tree li a.dir:before {
+  content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAPCAYAAADtc08vAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9sGBhMiMxgE1i8AAAAdaVRYdENvbW1lbnQAAAAAAENyZWF0ZWQgd2l0aCBHSU1QZC5lBwAAAYxJREFUKM+l0r1KXEEYxvH/bNS4K2RNCjsRBAlqITESI0QCuqBdWLwACSJaiZILiDcQkDRql8oUIqkkkRTRwiKVyvoRV5HFEFEX/DjomePsmfNauB4xrLAmD1PNML95eBnV0Fj/vjPRMcpfMcYAMP9jYXDzV3qSO1LSmegYfdvbV/DQ8zS+709oVzu7u78/FwQAHOeU9Y31gsjz5hYcx5lqbXsxdb23ld4eW15aGQmBaDRGZfzxXS1JvukBQCmFUoqZL9PDIWCMQWuX76tnpLIxisqjJC39SXmoM5thg1Q2xsd3XXjGFmWUlz1g6MPc0xIArV0A9o89dg7PiwJqqyoAiHieRzRaZPUCibiuGzb4J+B6Bv8F3LeBtQFeznLrH5RGAgQQEZRSiAgiEIhgrZCzAcYXLnxLzgrxirIbQGuXmvgFR2eGP0caRBEg5BciIAgieRjwrdwAB9lDnrW9Yjlzkr909boIBAiCApGwVWvdE+a+fkOvzX5STd0D86XV7a/vOzy7t/hzaXb85SVDycBfkNNgmgAAAABJRU5ErkJggg==);
+}
+.file {
+  margin-right: 5px;
+  position: relative;
+}
+.tree li li a {
+  margin-right: 5px;
+  position: relative;
+}
 .tree .icon.expanded:before {
   content:"-";
 }
 
 .tree .hasChildren > .expanded a {
-  color:#fff;
+  /* color:#fff; */
 }
 .show-effect {
   display:block!important;
@@ -206,9 +213,8 @@ a.commit { color: black !important; }
   display:none;
 }
 .tree > li {
-  display:block;
+  display:grid;
   background:#eee;
-  margin-bottom:2px;
 }
 
 /* .tree li .plus-icon { */
