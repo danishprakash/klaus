@@ -1,14 +1,26 @@
 {% macro show_file(name, fullpath) %}
-    <li><a href="{{ url_for('blob', repo=repo.name, rev=rev, path=fullpath) }}">{{ name|force_unicode }}</a></li>
+    <a href="{{ url_for('blob', repo=repo.name, rev=rev, path=fullpath) }}" class=file>{{ name|force_unicode }}</a>
 {% endmacro %}
 
 {% macro show_dir(name, fullpath1, subs) %}
     <li>
         <span>
             <div class="icon"></div>
-            <a href="{{ url_for('history', repo=repo.name, rev=rev, path=fullpath1) }}" class=dir>{{ name|force_unicode }}</a></li>
+            <a href="{{ url_for('history', repo=repo.name, rev=rev, path=fullpath1) }}" class=dir>{{ name|force_unicode }}</a>
         </span>
-    <li>
+
+        <ul>
+        {% for item in subs.dirs %}
+            {% if item|length > 3 %}
+                {{ show_dir(item[1], item[2], item[3]) }}
+            {% endif %}
+        {% endfor %}
+
+        {% for _, name, fullpath in subs.files %}
+            {{ show_file(name, fullpath) }}
+        {% endfor %}
+        </ul>
+    </li>
 {% endmacro %}
 
 
@@ -16,17 +28,16 @@
     <h2>Tree @<a href="{{ url_for('commit', repo=repo.name, rev=rev) }}">{{ rev|shorten_sha1 }}</a>
         <span>(<a href="{{ url_for('download', repo=repo.name, rev=rev) }}">Download .tar.gz</a>)</span>
     </h2>
-    <ul>
-
-        {% for _, name, fullpath1, subs in root_tree.dirs %}
-            {{ show_dir(name, fullpath1, subs) }}
-
-            {% for _, name, fullpath in subs.files %}
-                {{ show_file(name, fullpath) }}
-            {% endfor %}
-
-        </li>
+    <li>
+        {% for item in root_tree.dirs %}
+            {% if item|length > 3 %}
+                {{ show_dir(item[1], item[2], item[3]) }}
+            {% endif %}
         {% endfor %}
+    </li>
 
-    </ul>
+    <script type=text/javascript src="{{
+      url_for('static', filename='js/jquery.js') }}"></script>
+    <script type=text/javascript src="{{
+      url_for('static', filename='js/main.js') }}"></script>
 </div>
